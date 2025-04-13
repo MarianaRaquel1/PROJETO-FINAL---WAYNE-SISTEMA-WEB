@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Solicitações de Suporte</title>
+    <link rel="icon" href="/static/img/icon - wayne - W - preta.png">
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body class="inter">
+    <header>
+        <nav>
+            <!-- Inclusão do icone da logo e indicação da pagina -->
+            <div class="nav-esquerda">
+    
+                <div class="btn-expandir">
+                    <div>
+                        <i class="bi bi-list"></i>
+                    </div>
+    
+                    <div class="dropdown">
+                        <ul>
+                            <li class="item-menu">
+                                <a href="/funcionario-pesquisa">
+                                    <div class="linha-horizontal"></div>
+                                    <span class="icon"><i class="bi bi-person-fill"></i></span>
+                                    <span class="txt-link">Funcionários</span>
+                                </a>
+                            </li>
+    
+                            <li class="item-menu">
+                                <a href="/veiculo-pesquisa">
+                                    <div class="linha-horizontal"></div>
+                                    <span class="icon"><i class="bi bi-car-front-fill"></i></span>
+                                    <span class="txt-link">Veículos</span>
+    
+    
+                                </a>
+                            </li>
+                            <li class="item-menu">
+                                <a href="/equipamento-pesquisa">
+                                    <div class="linha-horizontal"></div>
+                                    <span class="icon"><i class="bi bi-gear-fill"></i></span>
+                                    <span class="txt-link">Equipamentos</span>
+                                </a>
+                            </li>
+                            <li class="item-menu">
+                                <a href="/seguranca-pesquisa">
+                                    <div class="linha-horizontal"></div>
+                                    <span class="icon"><i class="bi bi-shield-fill-check"></i></span>
+                                    <span class="txt-link">Segurança</span>
+                                </a>
+                            </li>
+    
+                            <li class="item-menu">
+                                <a href="/dashboard">
+                                    <div class="linha-horizontal"></div>
+                                    <span class="icon"><i class="bi bi-speedometer2"></i></span>
+                                    <span class="txt-link">Dashboard</span>
+                                </a>
+                            </li>
+    
+                        </ul>
+    
+                    </div>
+    
+                </div>
+    
+                <div class="img_icone">
+                    <img src="/static/img/icon - wayne - W - branca.png"
+                        alt="Icone de cabeçalho representado pela Logo - Wayne Industries (Mansão Wayne invertida formando o W)">
+                    <h2>Suporte</h2>
+                </div>
+            </div>
+    
+       
+            <div class="nav-direita">
+     
+                <a href="/"><button type="button">Sair</button></a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="menu-paginas">
+        <a href="/suporte-chamados"><button type="button" class="btn-pagina">Suporte</button></a>
+        <a href="/seguranca-pesquisa"><button type="button" class="btn-pagina">Pesquisar</button></a>
+
+    </div>
+
+
+<main>
+
+    <div>
+        <img class="marca_dagua_5" src="/static/img/logo - wayne - W - preta.png" alt="">
+    </div>
+<div>
+    <img class="logo-tb" src="/static/img/logo - wayne industries branca.png" alt="Logo Wayne - Industries">
+    
+    <table>
+        <thead>
+            <tr class="cabecalho">
+                <th class="col-id">ID</th>
+                <th class="col-usuario">Usuário</th>
+                <th class="col-email">Email</th>
+                <th class="col-problema">Problema</th>
+                <th class="col-data">Data</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for suporte in lista_suporte %}
+            <tr>
+                <td>{{ suporte.id_suporte }}</td>
+                <td>{{ suporte.nome_usuario }}</td>
+                <td>{{ suporte.email }}</td>
+                <td>{{ suporte.problema }}</td>
+                <td>{{ suporte.data_solicitacao.strftime('%d/%m/%Y %H:%M') }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="6">Nenhuma solicitação registrada.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+   
+</main>
+    
+</body>
+</html>

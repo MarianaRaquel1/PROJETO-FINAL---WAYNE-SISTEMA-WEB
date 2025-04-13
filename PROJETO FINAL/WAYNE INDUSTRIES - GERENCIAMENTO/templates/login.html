@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acesso</title>
+    <link rel="icon" href="/static/img/icon - wayne - W - preta.png">
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+
+</head>
+
+<body class="inter">
+
+
+
+    <!-- Cabeçalho -->
+    <header>
+        <nav>
+            <!-- Inclusão do icone da logo e indicação da pagina -->
+            <div class="img_icone_w">
+                <img src="/static/img/icon - wayne - W - branca.png"
+                    alt="Icone de cabeçalho representado pela Logo - Wayne Industries (Mansão Wayne invertida formando o W)">
+                <h2>Acesso</h2>
+            </div>
+            <!-- Botão para direcionar a pagina suporte -->
+            <div>
+                <a href="/suporte"><button type="button">Suporte</button></a>
+            </div>
+        </nav>
+    </header>
+    <!-- corpo da pagina onde está localizado o formulario de acesso -->
+    <main>
+        <!-- Inclusão da marca d'agua -->
+        <div>
+            <img class="marca_dagua_1" src="/static/img/logo - wayne - W - preta.png" alt="">
+        </div>
+
+        <!-- Formulario de acesso ao sistema -->
+        <div class="formulario">
+            <!-- Logo central -->
+            <img class="logo-login" src="/static/img/logo - wayne industries branca.png" alt="Logo Wayne - Industries">
+
+
+            <!-- Campos do formulario -->
+            <form action="/acesso" method="post">
+                <!-- campo para incluir o usuário -->
+                <div class="icon_input">
+                    <span class="icon"><i class="bi bi-person-fill"></i></span>
+                    <input class="input-login" type="text" name="usuario" id="usuario" placeholder="Usuário" />
+                </div>
+                <!-- campo para incluir a senha -->
+                <div class="icon_input">
+                    <span class="icon"><i class="bi bi-key-fill"></i></span>
+                    <input class="input-login" type="password" name="senha" id="senha" placeholder="Senha" />
+                </div>
+                <!-- Botão para entrar no sistema e link para direcionar a pagina de redefiniçaõ de senha-->
+                <div class="btn-login">
+                    <button type="submit">Entrar</button>
+                
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </main>
+
+    <footer>
+        <h5>@wayne - Industries</h5>
+    </footer>
+
+
+    
+
+</body>

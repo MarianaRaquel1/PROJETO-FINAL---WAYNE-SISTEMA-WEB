@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equipamentos</title>
+    <link rel="icon" href="/static/img/icon - wayne - W - preta.png">
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+
+<body class="inter">
+
+
+    <!-- Cabeçalho -->
+    <header>
+        <nav>
+            <!-- Inclusão do icone da logo e indicação da pagina -->
+            <div class="nav-esquerda">
+
+                <div class="btn-expandir">
+                    <div>
+                        <i class="bi bi-list"></i>
+                    </div>
+
+                    <div class="dropdown">
+                        <ul>
+                            <li class="item-menu">
+                                <a href="/funcionario-pesquisa">
+                                    <div class="linha-horizontal"></div>
+                                    <span class="icon"><i class="bi bi-person-fill"></i></span>
+                                    <span class="txt-link">Funcionários</span>
+                                </a>
+                            </li>
+
+                            <li class="item-menu">
+                                <a href="/veiculo-pesquisa">
+                                    <div class="linha-horizontal"></div>
+                                    <span class="icon"><i class="bi bi-car-front-fill"></i></span>
+                                    <span class="txt-link">Veículos</span>
+
+
+                                </a>
+                            </li>
+                            <li class="item-menu">
+                                <a href="/equipamento-pesquisa">
+                                    <div class="linha-horizontal"></div>
+                                    <span class="icon"><i class="bi bi-gear-fill"></i></span>
+                                    <span class="txt-link">Equipamentos</span>
+                                </a>
+                            </li>
+                            <li class="item-menu">
+                                <a href="/seguranca-pesquisa">
+                                    <div class="linha-horizontal"></div>
+                                    <span class="icon"><i class="bi bi-shield-fill-check"></i></span>
+                                    <span class="txt-link">Segurança</span>
+                                </a>
+                            </li>
+
+                            <li class="item-menu">
+                                <a href="/dashboard">
+                                    <div class="linha-horizontal"></div>
+                                    <span class="icon"><i class="bi bi-speedometer2"></i></span>
+                                    <span class="txt-link">Dashboard</span>
+                                </a>
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+                <div class="img_icone">
+                    <img src="/static/img/icon - wayne - W - branca.png"
+                        alt="Icone de cabeçalho representado pela Logo - Wayne Industries (Mansão Wayne invertida formando o W)">
+                    <h2>Gerenciamento de Equipamentos</h2>
+                </div>
+            </div>
+
+
+
+            
+            <div class="nav-direita">
+
+     
+                <a href="/"><button type="button">Sair</button></a>
+            </div>
+
+
+        </nav>
+
+        <div class="menu-paginas">
+            <a href="/equipamento-controle"><button type="button" class="btn-pagina">Controle</button></a>
+            <a href="/equipamento-pesquisa"><button type="button" class="btn-pagina"><b>Pesquisar</b></button></a>
+            <a href="/equipamento-cadastro"><button type="button" class="btn-pagina">Cadastrar</button></a>
+
+        </div>
+
+    </header>
+
+    <!-- corpo da pagina onde está localizado o formulario de acesso -->
+    <main>
+
+
+        <!-- Inclusão da marca d'agua -->
+        <div>
+            <img class="marca_dagua_2" src="/static/img/logo - wayne - W - preta.png" alt="">
+        </div>
+        <!-- Formulario -->
+        <div>
+
+        </div>
+        <div class="formularios">
+            <div>
+                <form action="/equipamento-pesquisa" method="get" class="pesquisa">
+                    <div class="input-form">
+                        <div class="input-itens">
+                            <label for="patrimonio">Patrimônio</label>
+                            <input type="text" name="patrimonio" id="patrimonio" class="input-ncadastro" required>
+    
+                       </div>
+                       <div>
+                        <button type="submit" class="btn-principal">Pesquisar</button>
+                    </div>
+                </form>
+                <div>
+                    <form action="/equipamento-excluir" method="post" class="btn-excluir" onsubmit="return confirm('Deseja realmente excluir este equipamento?')" class="btn-excluir">
+                        <input type="hidden" name="patrimonio" value="{{patrimonio}}">
+                        <button type="submit" class="btn-principal">Excluir</button>
+                    </form>
+    
+                </div>
+            </div>
+
+            <form action="/equipamento-editar" method="post" onsubmit="return confirm('Deseja realmente salvar as alterações deste equipamento?');" class="form-cadastro" class="form-cadastro">
+
+                <div class="input-form">
+                    <div class="input-itens">
+                        <label for="patrimonio">Patrimônio</label>
+                        <input type="text" name="patrimonio" id="patrimonio" class="input-ncadastro" value="{{equipamento.id_patrimonio}}" readonly>
+
+                    </div>
+
+
+                    <div class="input-itens">
+                        <label for="descricao">Descrição</label>
+                        <input type="text" name="descricao" id="descricao" class="input-descricao"
+                            value="{{equipamento.descricao}}">
+                    </div>
+                </div>
+
+
+                <div class="input-form">
+                    <div class="input-itens">
+                        <label for="marca">Marca</label>
+                        <input type="text" name="marca" id="marca" class="input-documento"
+                            value="{{equipamento.marca}}">
+                    </div>
+                    <div class="input-itens">
+                        <label for="modelo">Modelo</label>
+                        <input type="text" name="modelo" id="modelo" class="input-documento"
+                            value="{{equipamento.modelo}}">
+                    </div>
+                </div>
+
+                <div class="input-form">
+                    <div class="input-itens">
+                        <label for="serie">Série</label>
+                        <input type="number" name="serie" id="serie" class="input-documento"
+                            value="{{equipamento.serie}}">
+                    </div>
+                    <div class="input-itens">
+                        <label for="imei">IMEI</label>
+                        <input type="number" name="imei" id="imei" class="input-documento" value="{{equipamento.imei}}">
+                    </div>
+
+                </div>
+
+                <div class="input-form">
+
+                    <div class="input-itens">
+                        <label for="data_compra">Data da Compra</label>
+                        <input type="date" name="data_compra" id="data_compra" class="input-data"
+                            value="{{equipamento.data_compra}}">
+                    </div>
+
+                    <div class="input-itens">
+                        <label for="fornecedor">Fornecedor</label>
+                        <input type="text" name="fornecedor" id="fornecedor" class="input-fornecedor_comprador"
+                            value="{{equipamento.fornecedor}}">
+                    </div>
+
+                </div>
+
+                <div class="input-form">
+                    <div class="input-itens">
+                        <label for="valor_compra">Valor da Compra</label>
+                        <input type="text" name="valor_compra" id="valor_compra" class="input-valor"
+                            value="{{equipamento.valor_compra}}">
+                    </div>
+                    <div class="input-itens">
+                        <label for="documento_fiscal_compra">Documento Fiscal_compra</label>
+                        <input type="text" name="documento_fiscal_compra" id="documento_fiscal_compra"
+                            class="input-valor" value="{{equipamento.documento_fiscal_compra}}">
+                    </div>
+
+                </div>
+                <div class="input-form">
+                    <div class="input-itens">
+                        <label for="data_venda">Data da Venda</label>
+                        <input type="date" name="data_venda" id="data_venda" class="input-data"
+                            value="{{equipamento.data_venda}}">
+                    </div>
+                    <div class="input-itens">
+                        <label for="comprador">Comprador</label>
+                        <input type="text" name="comprador" id="comprador" class="input-fornecedor_comprador"
+                            value="{{equipamento.comprador}}">
+                    </div>
+
+                </div>
+                <div class="input-form">
+                    <div class="input-itens">
+                        <label for="valor_venda">Valor da Venda</label>
+                        <input type="text" name="valor_venda" id="valor_venda" class="input-valor"
+                            value="{{equipamento.valor_venda}}">
+                    </div>
+                    <div class="input-itens">
+                        <label for="documento_fiscal_venda">Documento Fiscal</label>
+                        <input type="text" name="documento_fiscal_venda" id="documento_fiscal_venda" class="input-valor"
+                            value="{{equipamento.documento_fiscal_venda}}">
+                    </div>
+
+
+                </div>
+                <div class="input-form">
+                    <div class="input-itens">
+                        <label for="status">Status</label>
+                        <select name="status" id="" class="input-documento">
+                            <option value="descarte">Descarte</option>
+                            <option value="em_uso">Em uso</option>
+                            <option value="estoque">Estoque</option>
+                            <option value="manutenção">Manutenção</option>
+                        </select>
+                    </div>
+                    <div class="input-itens">
+                        <label for="data_descarte">Data de Descarte</label>
+                        <input type="date" class="input-data">
+                    </div>
+
+                </div>
+
+                <div>
+                    <div class="btn_edicao">
+                        <button type="submit">Salvar</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+
+
+    </main>
+
+    <footer>
+        <h5>@wayne - Industries</h5>
+    </footer>
+
+
+   
+
+</body>

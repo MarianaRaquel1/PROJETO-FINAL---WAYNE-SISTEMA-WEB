@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funcionários</title>
+    <link rel="icon" href="/static/img/icon - wayne - W - preta.png">
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+
+<body class="inter">
+
+
+    <!-- Cabeçalho -->
+    <header>
+        <nav>
+            <!-- Inclusão do icone da logo e indicação da pagina -->
+            <div class="nav-esquerda">
+
+                <div class="btn-expandir">
+                    <div>
+                        <i class="bi bi-list"></i>
+                    </div>
+
+                    <div class="dropdown">
+                        <ul>
+                            <li class="item-menu">
+                                <a href="/funcionario-pesquisa">
+                                    <div class="linha-horizontal"></div>
+                                    <span class="icon"><i class="bi bi-person-fill"></i></span>
+                                    <span class="txt-link">Funcionários</span>
+                                </a>
+                            </li>
+
+                            <li class="item-menu">
+                                <a href="/veiculo-pesquisa">
+                                    <div class="linha-horizontal"></div>
+                                    <span class="icon"><i class="bi bi-car-front-fill"></i></span>
+                                    <span class="txt-link">Veículos</span>
+
+
+                                </a>
+                            </li>
+                            <li class="item-menu">
+                                <a href="/equipamento-pesquisa">
+                                    <div class="linha-horizontal"></div>
+                                    <span class="icon"><i class="bi bi-gear-fill"></i></span>
+                                    <span class="txt-link">Equipamentos</span>
+                                </a>
+                            </li>
+                            <li class="item-menu">
+                                <a href="/seguranca-pesquisa">
+                                    <div class="linha-horizontal"></div>
+                                    <span class="icon"><i class="bi bi-shield-fill-check"></i></span>
+                                    <span class="txt-link">Segurança</span>
+                                </a>
+                            </li>
+
+                            <li class="item-menu">
+                                <a href="/dashboard">
+                                    <div class="linha-horizontal"></div>
+                                    <span class="icon"><i class="bi bi-speedometer2"></i></span>
+                                    <span class="txt-link">Dashboard</span>
+                                </a>
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+                <div class="img_icone">
+                    <img src="/static/img/icon - wayne - W - branca.png"
+                        alt="Icone de cabeçalho representado pela Logo - Wayne Industries (Mansão Wayne invertida formando o W)">
+                    <h2>Gerenciamento de Funcionários</h2>
+                </div>
+            </div>
+
+
+
+       
+            <div class="nav-direita">
+
+              
+                <a href="/"><button type="button">Sair</button></a>
+            </div>
+
+
+        </nav>
+
+        <div class="menu-paginas">
+            <a href="/funcionario-pesquisa"><button type="button" class="btn-pagina"><b>Pesquisar</b></button></a>
+            <a href="/funcionario-cadastro"><button type="button" class="btn-pagina">Cadastrar</button></a>
+        </div>
+
+    </header>
+
+    <!-- corpo da pagina onde está localizado o formulario de acesso -->
+    <main>
+
+
+        <!-- Inclusão da marca d'agua -->
+        <div>
+            <img class="marca_dagua_2" src="/static/img/logo - wayne - W - preta.png" alt="">
+        </div>
+        <!-- Formulario -->
+        <div class="formularios">
+            <div>
+                <form action="/funcionario-pesquisa" method="get" class="pesquisa">
+                    <div class="input-form">
+                        <div class="input-itens">
+                            <label for="matricula">Matricula</label>
+                            <input type="text" name="matricula" id="matricula" class="input-ncadastro" required>
+
+                        </div>
+                        <div>
+                            <button type="submit" class="btn-principal">Pesquisar</button>
+                        </div>
+                </form>
+
+                <div>
+                    <form action="/funcionario-excluir" method="post" class="btn-excluir" onsubmit="return confirm('Deseja realmente excluir este funcionário?');">
+                        <input type="hidden" name="matricula" value="{{matricula}}">
+                        <button type="submit" class="btn-principal">Excluir</button>
+                    </form>
+
+                </div>
+
+
+            </div>
+            <form action="/funcionario-editar" method="post" onsubmit="return confirm('Deseja realmente salvar as alterações deste funcionário?');" class="form-cadastro">
+
+                <div class="input-form">
+                    <div class="input-itens">
+                        <label for="matricula">Matricula</label>
+                        <input type="text" name="matricula" id="matricula" class="input-ncadastro"
+                            value="{{funcionario.id_matricula}}" readonly>
+
+                    </div>
+
+                    <div class="input-itens">
+                        <label for="nome_completo">Nome Completo</label>
+                        <input type="text" name="nome_completo" id="nome_completo" class="input-nome_completo"
+                            value="{{funcionario.nome_completo}}">
+                    </div>
+                </div>
+
+
+                <div class="input-form">
+                    <div class="input-itens">
+                        <label for="data_nascimento">Data de Nascimento</label>
+                        <input type="date" name="data_nascimento" id="data_nascimento" class="input-data"
+                            value="{{funcionario.data_nascimento}}">
+                    </div>
+                    <div class="input-itens">
+                        <label for="rg">RG</label>
+                        <input type="number" name="rg" id="rg" class="input-documento" value="{{funcionario.rg}}">
+                    </div>
+                    <div class="input-itens">
+                        <label for="cpf">CPF</label>
+                        <input type="number" name="cpf" id="cpf" class="input-documento" value="{{funcionario.cpf}}">
+                    </div>
+
+
+                </div>
+
+                <div class="input-form">
+                    <div class="input-itens">
+                        <label for="data_admissao">Data de Admissão</label>
+                        <input type="date" name="data_admissao" id="data_admissao" class="input-data"
+                            value="{{funcionario.data_admissao}}">
+                    </div>
+                    <div class="input-itens">
+                        <label for="cargo">Cargo</label>
+                        <select name="cargo" id="cargo" class="input-cargo">
+                            <option value="analista_equipamento" {% if funcionario.cargo=="analista_equipamento"
+                                %}selected{% endif %}>Analista de Equipamentos</option>
+                            <option value="analista_frota" {% if funcionario.cargo=="analista_frota" %}selected{% endif
+                                %}>Analista de Frota</option>
+                            <option value="analista" {% if funcionario.cargo=="analista" %}selected{% endif %}>Analista
+                                de Pessoas</option>
+                            <option value="analista_segurança" {% if funcionario.cargo=="analista_segurança"
+                                %}selected{% endif %}>Analista de Segurança</option>
+                            <option value="gerente_equipamentos" {% if funcionario.cargo=="gerente_equipamentos"
+                                %}selected{% endif %}>Gerente de Equipamentos</option>
+                            <option value="gerente_frota" {% if funcionario.cargo=="gerente_frota" %}selected{% endif
+                                %}>Gerente de Frotas</option>
+                            <option value="gerente_pessoas" {% if funcionario.cargo=="gerente_pessoas" %}selected{%
+                                endif %}>Gerente de Pessoas</option>
+                            <option value="gerente_segurança" {% if funcionario.cargo=="gerente_segurança" %}selected{%
+                                endif %}>Gerente de Segurança</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="input-form">
+
+                    <div class="input-itens">
+                        <label for="email_corporativo">Email Corporativo</label>
+                        <input type="email" name="email_corporativo" id="email_corporativo"
+                            class="input-email_corporativo" value="{{funcionario.email_corporativo}}">
+                    </div>
+
+                    <div class="input-itens">
+
+                        <label for="telefone_corporativo">Telefone Corporativo</label>
+                        <input type="number" name="telefone_corporativo" id="telefone_corporativo"
+                            class="input-telefone_corporativo" value="{{funcionario.telefone_corporativo}}">
+                    </div>
+
+                </div>
+
+                <div class="input-form">
+                    <div class="input-itens">
+                        <label for="data_demissao">Data de Demissão</label>
+                        <input type="date" name="data_demissao" id="data_demissao" class="input-data"
+                            value="{{funcionario.data_demissao}}">
+                    </div>
+
+                </div>
+
+                <div>
+
+                    <div class="btn_edicao">
+                        <input type="hidden" name="matricula" value="{{matricula}}">
+                        <button type="submit" >Salvar</button>
+
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+
+
+    </main>
+
+    <footer>
+        <h5>@wayne - Industries</h5>
+    </footer>
+
+
+
+
+</body>

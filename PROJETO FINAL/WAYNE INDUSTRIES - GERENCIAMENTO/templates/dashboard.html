@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="icon" href="/static/img/icon - wayne - W - preta.png">
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+
+<body class="inter"></body>
+
+<header>
+    <nav>
+        <!-- Inclusão do icone da logo e indicação da pagina -->
+        <div class="nav-esquerda">
+
+            <div class="btn-expandir">
+                <div>
+                    <i class="bi bi-list"></i>
+                </div>
+
+                <div class="dropdown">
+                    <ul>
+                        <li class="item-menu">
+                            <a href="/funcionario-pesquisa">
+                                <div class="linha-horizontal"></div>
+                                <span class="icon"><i class="bi bi-person-fill"></i></span>
+                                <span class="txt-link">Funcionários</span>
+                            </a>
+                        </li>
+
+                        <li class="item-menu">
+                            <a href="/veiculo-pesquisa">
+                                <div class="linha-horizontal"></div>
+                                <span class="icon"><i class="bi bi-car-front-fill"></i></span>
+                                <span class="txt-link">Veículos</span>
+
+
+                            </a>
+                        </li>
+                        <li class="item-menu">
+                            <a href="/equipamento-pesquisa">
+                                <div class="linha-horizontal"></div>
+                                <span class="icon"><i class="bi bi-gear-fill"></i></span>
+                                <span class="txt-link">Equipamentos</span>
+                            </a>
+                        </li>
+                        <li class="item-menu">
+                            <a href="/seguranca-pesquisa">
+                                <div class="linha-horizontal"></div>
+                                <span class="icon"><i class="bi bi-shield-fill-check"></i></span>
+                                <span class="txt-link">Segurança</span>
+                            </a>
+                        </li>
+
+                        <li class="item-menu">
+                            <a href="/dashboard">
+                                <div class="linha-horizontal"></div>
+                                <span class="icon"><i class="bi bi-speedometer2"></i></span>
+                                <span class="txt-link">Dashboard</span>
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+            <div class="img_icone">
+                <img src="/static/img/icon - wayne - W - branca.png"
+                    alt="Icone de cabeçalho representado pela Logo - Wayne Industries (Mansão Wayne invertida formando o W)">
+                <h2>Dashboard</h2>
+            </div>
+        </div>
+
+     
+        <div class="nav-direita">
+          
+            <a href="/"><button type="button">Sair</button></a>
+        </div>
+    </nav>
+</header>
+
+<main>
+
+    <div>
+        <img class="marca_dagua_4" src="/static/img/logo - wayne - W - preta.png" alt="">
+    </div>
+
+    <!-- Formulario de acesso ao sistema -->
+    <div class="formulario">
+        <!-- Logo central -->
+        <img class="logo" src="/static/img/logo - wayne industries branca.png" alt="Logo Wayne - Industries">
+
+        <div class="cards-container">
+            {% for nome, total in totais.items() %}
+            <div class="card">
+                <div class="icon">
+                    {% if nome == 'Funcionários' %}
+                    <i class="bi bi-person-fill"></i>
+                    {% elif nome == 'Usuários' %}
+                    <i class="bi bi-person-badge-fill"></i>
+                    {% elif nome == 'Veículos' %}
+                    <i class="bi bi-car-front-fill"></i>
+                    {% elif nome == 'Controle de Veículos' %}
+                    <i class="bi bi-geo-alt-fill"></i>
+                    {% elif nome == 'Equipamentos' %}
+                    <i class="bi bi-gear-fill"></i>
+                    {% elif nome == 'Controle de Equipamentos' %}
+                    <i class="bi bi-box-seam"></i>
+                    {% elif nome == 'Chamados de Suporte' %}
+                    <i class="bi bi-tools"></i>
+                    {% else %}
+                    <i class="bi bi-folder-fill"></i>
+                    {% endif %}
+                </div>
+
+                <h5 class="card-title">{{ nome }}</h5>
+                <p class="card-text">{{ total }}</p>
+            </div>
+            {% endfor %}
+        </div>
+
+</main>
+
+
+</body>
+
+</html>

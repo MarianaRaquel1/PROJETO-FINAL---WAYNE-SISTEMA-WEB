@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veículos</title>
+    <link rel="icon" href="/static/img/icon - wayne - W - preta.png">
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+
+<body class="inter">
+
+
+    <!-- Cabeçalho -->
+    <header>
+        <nav>
+            <!-- Inclusão do icone da logo e indicação da pagina -->
+            <div class="nav-esquerda">
+
+                <div class="btn-expandir">
+                    <div>
+                        <i class="bi bi-list"></i>
+                    </div>
+
+                    <div class="dropdown">
+                        <ul>
+                            <li class="item-menu">
+                                <a href="/funcionario-pesquisa">
+                                    <div class="linha-horizontal"></div>
+                                    <span class="icon"><i class="bi bi-person-fill"></i></span>
+                                    <span class="txt-link">Funcionários</span>
+                                </a>
+                            </li>
+
+                            <li class="item-menu">
+                                <a href="/veiculo-pesquisa">
+                                    <div class="linha-horizontal"></div>
+                                    <span class="icon"><i class="bi bi-car-front-fill"></i></span>
+                                    <span class="txt-link">Veículos</span>
+
+
+                                </a>
+                            </li>
+                            <li class="item-menu">
+                                <a href="/equipamento-pesquisa">
+                                    <div class="linha-horizontal"></div>
+                                    <span class="icon"><i class="bi bi-gear-fill"></i></span>
+                                    <span class="txt-link">Equipamentos</span>
+                                </a>
+                            </li>
+                            <li class="item-menu">
+                                <a href="/seguranca-pesquisa">
+                                    <div class="linha-horizontal"></div>
+                                    <span class="icon"><i class="bi bi-shield-fill-check"></i></span>
+                                    <span class="txt-link">Segurança</span>
+                                </a>
+                            </li>
+
+                            <li class="item-menu">
+                                <a href="/dashboard">
+                                    <div class="linha-horizontal"></div>
+                                    <span class="icon"><i class="bi bi-speedometer2"></i></span>
+                                    <span class="txt-link">Dashboard</span>
+                                </a>
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+                <div class="img_icone">
+                    <img src="/static/img/icon - wayne - W - branca.png"
+                        alt="Icone de cabeçalho representado pela Logo - Wayne Industries (Mansão Wayne invertida formando o W)">
+                    <h2>Gerenciamento de Veículos</h2>
+                </div>
+            </div>
+
+
+
+       
+            <div class="nav-direita">
+              
+            
+                <a href="/"><button type="button">Sair</button></a>
+            </div>
+
+
+        </nav>
+
+        <div class="menu-paginas">
+            <a href="/veiculo-controle"><button type="button" class="btn-pagina"><b>Controle</b></button></a>
+            <a href="/veiculo-pesquisa"><button type="button" class="btn-pagina">Pesquisar</button></a>
+            <a href="/veiculo-cadastro"><button type="button" class="btn-pagina">Cadastrar</button></a>
+
+        </div>
+
+    </header>
+
+    <!-- corpo da pagina onde está localizado o formulario de acesso -->
+    <main>
+
+
+        <!-- Inclusão da marca d'agua -->
+        <div>
+            <img class="marca_dagua_3" src="/static/img/logo - wayne - W - preta.png" alt="">
+        </div>
+        <!-- Formulario -->
+        <form action="{% if id_registro %}{{ url_for('veiculo_controle', id_registro=id_registro) }}{% else %}{{ url_for('veiculo_controle') }}{% endif %}" method="post"
+            class="form-cadastro">
+            <div class="input-form">
+                <div class="input-itens">
+                    <label for="registro">Registro</label>
+                    <input type="text" name="registro" id="registro" class="input-ncadastro"
+                        value="{{ id_registro if id_registro else '' }}" readonly>
+                </div>
+
+                <div class="input-itens">
+                    <label for="placa">Placa</label>
+                    <select name="placa" id="placa" class="input-placa">
+                        {% for veiculo in placas %}
+                        <option value="{{ veiculo.id_registro }}" {% if veiculo.id_registro==id_registro %}selected{%
+                            endif %}>
+                            {{ veiculo.placa }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <div class="saida-entrada">
+                <div class="saida">
+                    <h3>Saída</h3>
+                    <div class="input-form">
+                        <div class="input-itens">
+                            <label for="data_saida">Data e Horário</label>
+                            <input type="datetime-local" name="data_saida" id="data_saida" class="input-data-horario"
+                                value="{{ controle_aberto.data_hora_saida.strftime('%Y-%m-%dT%H:%M') if controle_aberto and controle_aberto.data_hora_saida else '' }}">
+                        </div>
+                    </div>
+
+                    <div class="input-form">
+                        <div class="input-itens">
+                            <label for="condutor_responsavel">Condutor Responsável</label>
+                            <select name="condutor_responsavel" id="condutor_responsavel"
+                                class="input-fornecedor_comprador">
+                                <option value="">Selecione um funcionário</option>
+                                {% for funcionario in funcionarios %}
+                                <option value="{{ funcionario.id_matricula }}" {% if controle_aberto and
+                                    controle_aberto.id_matricula==funcionario.id_matricula %}selected{% endif %}>
+                                    {{ funcionario.nome_completo }}
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="input-form">
+                        <div class="input-itens">
+                            <label for="motivo">Motivo</label>
+                            <input type="text" name="motivo" id="motivo" class="input-motivo"
+                                value="{{ controle_aberto.motivo if controle_aberto else '' }}">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="entrada">
+                    <h3>Entrada</h3>
+                    <div class="input-form">
+                        <div class="input-itens">
+                            <label for="data_entrada">Data e Horário</label>
+                            <input type="datetime-local" name="data_entrada" id="data_entrada"
+                                class="input-data-horario"
+                                value="{{ controle_aberto.data_hora_entrada.strftime('%Y-%m-%dT%H:%M') if controle_aberto and controle_aberto.data_hora_entrada else '' }}">
+                        </div>
+                    </div>
+
+                    <div class="input-form">
+                        <div class="radio-entrada">
+                            <label for="enviar_para">Enviar para:</label>
+                            <div class="radio">
+                                <div class="radio-itens">
+                                    <input type="radio" name="enviar_para" id="garagem" value="Garagem" {% if
+                                        controle_aberto and controle_aberto.enviar_para_entrada=='Garagem' %}checked{%
+                                        endif %}>
+                                    <label for="garagem">Garagem</label>
+                                </div>
+                                <div class="radio-itens">
+                                    <input type="radio" name="enviar_para" id="manutencao" value="Manutenção" {% if
+                                        controle_aberto and controle_aberto.enviar_para_entrada=='Manutenção'
+                                        %}checked{% endif %}>
+                                    <label for="manutencao">Manutenção</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="input-form">
+                        <div class="input-itens">
+                            <label for="observacao">Observação</label>
+                            <input type="text" name="observacao" id="observacao" class="input-motivo"
+                                value="{{ controle_aberto.observacao_entrada if controle_aberto else '' }}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div>
+                    <button type="submit" class="btn-principal-rgt-v">Registrar</button>
+                </div>
+            </div>
+        </form>
+
+
+
+    </main>
+
+    <footer>
+        <h5>@wayne - Industries</h5>
+    </footer>
+
+
+
+
+</body>

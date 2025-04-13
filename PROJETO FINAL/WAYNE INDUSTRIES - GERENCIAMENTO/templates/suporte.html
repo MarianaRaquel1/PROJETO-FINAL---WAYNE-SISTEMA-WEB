@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suporte</title>
+    <link rel="icon" href="/static/img/icon - wayne - W - preta.png">
+    <link rel="stylesheet" href="/static/styles.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+    </style>
+
+</head>
+
+<body class="inter">
+
+    <!-- Cabeçalho -->
+    <header>
+        <nav>
+            <!-- Inclusão do icone da logo e indicação da pagina -->
+            <div class="img_icone_w">
+                <img src="/static/img/icon - wayne - W - branca.png"
+                    alt="Icone de cabeçalho representado pela Logo - Wayne Industries (Mansão Wayne invertida formando o W)">
+                <h2>Suporte</h2>
+            </div>
+            <!-- Botão para direcionar a pagina suporte -->
+            <div>
+                <a href="/"><button type="button">Entrar</button></a>
+            </div>
+        </nav>
+    </header>
+    <!-- corpo da pagina onde está localizado o formulario de acesso -->
+    <main>
+        <!-- Inclusão da marca d'agua -->
+        <div>
+            <img class="marca_dagua_1" src="/static/img/logo - wayne - W - preta.png" alt="">
+        </div>
+
+        <!-- Formulario de acesso ao sistema -->
+        <div class="formulario">
+            <!-- Logo central -->
+            <img class="logo" src="/static/img/logo - wayne industries branca.png" alt="Logo Wayne - Industries">
+
+            <!-- Campos do formulario -->
+            <form action="/suporte" method="post">
+                <!-- campo para incluir o nome -->
+                <div>
+                    <label for="nome">Usuário de Acesso</label>
+                    <input class="input-suporte" type="text" name="nome" id="nome" placeholder="Nome" />
+                </div>
+                <!-- campo para incluir o e-mail -->
+                <div>
+                    <label for="email">E-mail</label>
+                    <input class="input-suporte" type="email" name="email" id="email" placeholder="E-mail" />
+                </div>
+                <div>
+                    <label for="problema">Problema</label>
+
+                    <input class="input-suporte, problema" type="text" name="problema" id="problema"
+                        placeholder="Descreva o problema" />
+                </div>
+
+                <!-- Botão para entrar no sistema e link para direcionar a pagina de redefiniçaõ de senha-->
+                <div class="btn-suporte">
+                    <button type="submit">Enviar</button>
+                </div>
+
+            </form>
+
+        </div>
+
+    </main>
+
+    <footer>
+        <h5>@wayne - Industries</h5>
+    </footer>
+
+
+
+</body>
